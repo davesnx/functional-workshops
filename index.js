@@ -19,16 +19,24 @@ function getPokemonDefinition (Pokemons, name) {
 	return Pokemons.find(pokemon => pokemon.name === name)
 }
 
-function calculateCoordinateDistance (a, b, pos) {
-	return mathSquareRoot(mathSquare(a.position[pos] + b.position[pos]))
+function calculateCoordinateDistance (a, b, axis) {
+	return mathSquareRoot(mathSquare(a[axis] - b[axis]))
 }
 
 function mathSquare(num) {
-	return Math.pow(num)
+	return Math.pow(num, 2)
 }
 
 function mathSquareRoot(num) {
 	return Math.sqrt(num)
+}
+
+function contains (array, value) {
+	return array.indexOf(value) > -1
+}
+
+function allConditionsTrue(array, test) {
+	return array.every(test)
 }
 
 const findPikachuPosition = (Pokemons) => {
@@ -36,15 +44,36 @@ const findPikachuPosition = (Pokemons) => {
 	return getPosition(pikachuDefinition)
 }
 
-const closestPokemonName = () => {}
+const closestPokemonName = (Pokemons, position) => {
+	let minDistance = 0
+	let name = ''
+	Pokemons.forEach((pokemon) => {
+		const distance = distanceBetweenPokemons(pokemon, { position })
+		if (minDistance === 0 || distance < minDistance) {
+			minDistance = distance
+			name = pokemon.name
+		}
+	})
+
+	return name
+}
 const distanceBetweenPokemons = (a, b) => {
-	const yDist = calculateCoordinateDistance(a, b, 1)
-	const xDist = calculateCoordinateDistance(a, b, 0)
+	const yDist = calculateCoordinateDistance(a.position, b.position, 1)
+	const xDist = calculateCoordinateDistance(a.position, b.position, 0)
 
 	return mathSquareRoot(mathSquare(xDist) + mathSquare(yDist))
 	// get the positions for each pokemons and then calculate the vector between the 2 based on their positions
 }
-const validateEnemiesMap = () => {}
+
+const validateEnemiesMap = (enemiesMap) => {
+	return allConditionsTrue(
+			Object.keys(enemiesMap),
+			force => allConditionsTrue(
+				enemiesMap[force],
+				antagonism => contains(enemiesMap[antagonism], force))
+			)
+}
+
 const createEnemies = () => {}
 
 module.exports = {
