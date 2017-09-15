@@ -101,7 +101,7 @@ describe('Pikachu Test Suite', () => {
   describe('Pokemon enemies', () => {
     const enemiesMap = {
       Normal: ['Flying', 'Poison'],
-      Water: ['Poison'],
+      Water: ['Poison', 'Ice'],
       Flying: ['Normal', 'Ice'],
       Poison: ['Normal', 'Water'],
       Ice: ['Flying', 'Water'],
