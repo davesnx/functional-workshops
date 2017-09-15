@@ -86,6 +86,10 @@ describe('Pikachu Test Suite', () => {
   })
 
   it('should get the distance between 2 pokemons', () => {
+    // It calculate the difference between each x and y value
+    // to get 2 deltas, then the distance between them is the
+    // square root of x^2 * y^2
+
     const Gyarados = Pokemons[4]
     const Magikarp = Pokemons[5]
 
@@ -123,10 +127,6 @@ describe('Pikachu Test Suite', () => {
     })
 
     it('should generate the enemies of each Pokemon', () => {
-      // It should go through each key of enemiesMap, X, and then look for
-      // each pokemon with `type` of X and add it to an object, P. Then it should
-      // look through each of the values, Y, and add the ID of any pokemon with type Y to P[X]
-
       // It should loop through each of the pokemon, P, and add its ID to object O.
       // Then it should look through enemiesMap, and add any pokemons with type enemiesMap[P.type]
 
