@@ -31,10 +31,7 @@ const findPikachuPosition = (pokemons) => {
 }
 
 const distanceBetweenPokemons = (pok1, pok2) => {
-  const [x, y] = pok1.position
-  const [a, b] = pok2.position
-
-  return getDistance(x, y, a, b)
+  return getDistance(...pok1.position, ...pok2.position)
 }
 
 const closestPokemonName = (pokemons, position) => {
@@ -68,8 +65,8 @@ const createEnemies = (pokemons, enemiesMap) => {
     enemies[p.id] = []
   })
 
-  Object.keys(enemiesMap).forEach(type => { // Normal
-    const pokemonsOfType = pokemons.filter(p => p.type === type) // [{ name: Rattata }]
+  Object.keys(enemiesMap).forEach(type => {
+    const pokemonsOfType = pokemons.filter(p => p.type === type)
     pokemonsOfType.forEach(p => {
       const enemyTypes = enemiesMap[p.type]
       pokemons.forEach(opponent => {
@@ -77,7 +74,7 @@ const createEnemies = (pokemons, enemiesMap) => {
           enemies[p.id].push(opponent.id)
         }
       })
-    }) // [{name: Rattata}]
+    })
   })
 
   return enemies
