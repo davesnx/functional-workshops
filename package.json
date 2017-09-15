@@ -11,8 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^20.0.4",
-    "ramda": "^0.24.1"
+    "jest": "^20.0.4"
   },
   "standard": {
     "globals": [
