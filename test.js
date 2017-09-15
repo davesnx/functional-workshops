@@ -79,6 +79,8 @@ describe('Pikachu Test Suite', () => {
   it(`should find Pikachu's position`, () => {
     const pikachuPosition = [123, 55]
     expect(findPikachuPosition(Pokemons)).toEqual(pikachuPosition)
+    // receive the pokemons definitions, and try and find the one that is named pikachu
+    // then search for the positions of the one named Pikachu
   })
 
   it('should get the distance between 2 pokemons', () => {
@@ -95,6 +97,9 @@ describe('Pikachu Test Suite', () => {
 
     expect(closestPokemonName(Pokemons, position)).toEqual(pokemonName)
     expect(closestPokemonName(Pokemons, position)).not.toEqual(firstPokemon)
+    // for each pokemons, look up their position and calculate the distance based on the given position
+    // maintain an object that gets updated everytime we find a new closest distance
+    // at the end of the whole pokemon list, return the closest distance
   })
 
   describe('Pokemon enemies', () => {
@@ -109,6 +114,8 @@ describe('Pikachu Test Suite', () => {
 
     it('validates that enemiesMap make sense', () => {
       expect(validateEnemiesMap(enemiesMap)).toBeTruthy()
+      // for each current key, test that the keys mapped as ennemies also contain the current key
+      // return false if it's not the case
     })
 
     it('should generate the enemies of each Pokemon', () => {
@@ -129,6 +136,9 @@ describe('Pikachu Test Suite', () => {
       }
 
       expect(enemies).toEqual(mockEnemies)
+      // checking each pokemon, based on its type,
+      // it should look through all the avaiable Pokemons
+      // and map the pokemon as an ennemy if its type matches the rivality
     })
   })
 })
