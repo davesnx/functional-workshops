@@ -78,6 +78,7 @@ const Pokemons = [
 describe('Pikachu Test Suite', () => {
   it(`should find Pikachu's position`, () => {
     const pikachuPosition = [123, 55]
+
     expect(findPikachuPosition(Pokemons)).toEqual(pikachuPosition)
     // receive the pokemons definitions, and try and find the one that is named pikachu
     // then search for the positions of the one named Pikachu
@@ -123,12 +124,12 @@ describe('Pikachu Test Suite', () => {
       const enemies = createEnemies(Pokemons, enemiesMap)
 
       const mockEnemies = {
-        1: [4, 7, 8, 9],
+        1: [4, 7, 8, 9, 10],
         2: [4, 5, 6, 7, 8, 9],
         3: [4, 5, 6, 7, 8, 9],
         4: [1, 2, 3],
-        5: [2, 3],
-        6: [2, 3],
+        5: [2, 3, 10],
+        6: [2, 3, 10],
         7: [1, 2, 3],
         8: [1, 2, 3],
         9: [1, 2, 3],
