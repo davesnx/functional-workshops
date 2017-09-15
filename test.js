@@ -78,12 +78,13 @@ const Pokemons = [
 describe('Pikachu Test Suite', () => {
   it(`should find Pikachu's position`, () => {
     const pikachuPosition = [123, 55]
+
     expect(findPikachuPosition(Pokemons)).toEqual(pikachuPosition)
   })
 
   it('should get the distance between 2 pokemons', () => {
-    const Gyarados = Pokemons[4]
-    const Magikarp = Pokemons[5]
+    const Gyarados = Pokemons[5]
+    const Magikarp = Pokemons[6]
 
     expect(distanceBetweenPokemons(Magikarp, Gyarados)).toEqual(5)
   })
