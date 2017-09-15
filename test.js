@@ -77,6 +77,9 @@ const Pokemons = [
 
 describe('Pikachu Test Suite', () => {
   it(`should find Pikachu's position`, () => {
+    // It should loop through every pokemon and if
+    // the name is `Pikachu`, it should return the position
+
     const pikachuPosition = [123, 55]
 
     expect(findPikachuPosition(Pokemons)).toEqual(pikachuPosition)
@@ -90,6 +93,10 @@ describe('Pikachu Test Suite', () => {
   })
 
   it('should find the closest Pokemon given a position', () => {
+    // It should loop through every pokemon and get the hypotenuse
+    // as in the previous test, then return the name of the pokemon with
+    // the smallest distance from Rattata
+
     const position = [4, 29]
     const pokemonName = 'Rattata'
     const firstPokemon = Pokemons[0].name
@@ -99,6 +106,9 @@ describe('Pikachu Test Suite', () => {
   })
 
   describe('Pokemon enemies', () => {
+    // It should loop through each key of enemiesMap, call this X, then
+    // it should go through each of its values, Y, and check that X is in enemiesMap[Y]
+
     const enemiesMap = {
       Normal: ['Flying', 'Poison'],
       Water: ['Poison', 'Ice'],
@@ -113,6 +123,13 @@ describe('Pikachu Test Suite', () => {
     })
 
     it('should generate the enemies of each Pokemon', () => {
+      // It should go through each key of enemiesMap, X, and then look for
+      // each pokemon with `type` of X and add it to an object, P. Then it should
+      // look through each of the values, Y, and add the ID of any pokemon with type Y to P[X]
+
+      // It should loop through each of the pokemon, P, and add its ID to object O.
+      // Then it should look through enemiesMap, and add any pokemons with type enemiesMap[P.type]
+
       const enemies = createEnemies(Pokemons, enemiesMap)
 
       const mockEnemies = {
