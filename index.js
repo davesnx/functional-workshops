@@ -1,3 +1,15 @@
+// const {
+//   compose,
+//   find
+// } = require('barely-functional')
+const {
+  apply,
+  map,
+  get,
+  matchesProperty,
+  compose,
+  find
+} = require('lodash/fp')
 /*
 
 type alias Pokemon = {
@@ -11,13 +23,11 @@ type PokemonTypes = Flying | Poison | Water | Ice | Electric | Normal
 
 */
 // utils
-const get = (prop) => (o) => o && o[prop]
+// const get = (prop) => (o) => o && o[prop]
 
+const getName = get('name')
 const getPosition = get('position')
 const getType = get('type')
-
-const chekPokemonName = (name) =>
-  (pokemon) => get('name')(pokemon) === name
 
 const distance = ([p0, p1], [q0, q1]) => {
   return Math.sqrt(
@@ -31,46 +41,46 @@ const findEnemies = (pokemon, enemies) => {
     .map(get('id'))
 }
 
+const findByName = (name) => find(matchesProperty('name', name))
+
+
+
+
+
+
 // Code
-const findPikachuPosition = (pokemons) => {
-  return getPosition(
-    pokemons.find(chekPokemonName('Pikachu'))
-  )
-}
+const findPikachuPosition = compose(
+  get('position'),
+  findByName('Pikachu')
+)
+
 const closestPokemonName = (pokemons, target) => {
-  const getName = get('name')
-  const getPosition = get('position')
-  let min = {
-    distance: null,
-    position: null,
-    name:null
-  }
-  pokemons.forEach((p, i) => {
+  return pokemons.reduce((min, p, i) => {
     if (i === 0) {
-      min = {
+      return {
         distance: distance(p.position, target),
         position: getPosition(p),
         name: getName(p)
       }
     } else {
       const d = distance(p.position, target)
-      if (d < min.distance) {
-        min = {
+      return d < min.distance
+        ? {
           distance: d,
           position: getPosition(p),
           name: getName(p)
         }
-      }
+        : min
+      return min
     }
-  })
-  return min.name
+  }, {}).name
 }
-const distanceBetweenPokemons = (poke, mon) => {
-  return distance(
-    getPosition(poke),
-    getPosition(mon)
-  )
-}
+const distanceBetweenPokemons = compose(
+  apply(distance),
+  map(getPosition),
+  Array.of
+)
+
 const validateEnemiesMap = (enemiesMap) => {
   let valid = true
   Object.keys(enemiesMap).forEach((kind) => {
