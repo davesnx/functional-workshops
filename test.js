@@ -120,7 +120,7 @@ describe('Pikachu Test Suite', () => {
       // return false if it's not the case
     })
 
-    xit('should generate the enemies of each Pokemon', () => {
+    it('should generate the enemies of each Pokemon', () => {
       const enemies = createEnemies(Pokemons, enemiesMap)
 
       const mockEnemies = {

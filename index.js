@@ -74,7 +74,17 @@ const validateEnemiesMap = (enemiesMap) => {
 			)
 }
 
-const createEnemies = () => {}
+const createEnemies = (Pokemons, enemiesMap) => {
+	return Pokemons.map(pokemon => {
+		return Pokemons
+		.filter(ennemy => ennemy.id !== pokemon.id)
+		.filter(ennemy => contains(enemiesMap[pokemon.type], ennemy.type))
+		.map(ennemy => ennemy.id)
+	}).reduce((acc, value, index) => {
+		acc[index + 1] = value
+		return acc
+	}, {})
+}
 
 module.exports = {
   findPikachuPosition: findPikachuPosition,
