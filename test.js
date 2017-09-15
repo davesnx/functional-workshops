@@ -78,18 +78,26 @@ const Pokemons = [
 describe('Pikachu Test Suite', () => {
   it(`should find Pikachu's position`, () => {
     const pikachuPosition = [123, 55]
-
+    /*
+      find the object in the array where name is Pikachu and get its position
+     */
     expect(findPikachuPosition(Pokemons)).toEqual(pikachuPosition)
   })
 
   it('should get the distance between 2 pokemons', () => {
     const Gyarados = Pokemons[4]
     const Magikarp = Pokemons[5]
+    /*
+    Get position of each pokemon and calculate distance sqrt(Math.abs(x - x') + Math.abs(y - y'))
+     */
 
     expect(distanceBetweenPokemons(Magikarp, Gyarados)).toEqual(5)
   })
 
   it('should find the closest Pokemon given a position', () => {
+    /*
+    Calculate all distances refered to the targeted position, find the smaller one.
+     */
     const position = [4, 29]
     const pokemonName = 'Rattata'
     const firstPokemon = Pokemons[0].name
@@ -109,10 +117,16 @@ describe('Pikachu Test Suite', () => {
     }
 
     it('validates that enemiesMap make sense', () => {
+      /*
+      check that each value in an array for a key in the map includes the key in their values
+       */
       expect(validateEnemiesMap(enemiesMap)).toBeTruthy()
     })
 
     it('should generate the enemies of each Pokemon', () => {
+      /*
+        for each pokemon, find all the other ones according to the kinds described in the enemiesmap
+       */
       const enemies = createEnemies(Pokemons, enemiesMap)
 
       const mockEnemies = {
