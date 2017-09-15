@@ -83,8 +83,8 @@ describe('Pikachu Test Suite', () => {
   })
 
   it('should get the distance between 2 pokemons', () => {
-    const Gyarados = Pokemons[5]
-    const Magikarp = Pokemons[6]
+    const Gyarados = Pokemons[4]
+    const Magikarp = Pokemons[5]
 
     expect(distanceBetweenPokemons(Magikarp, Gyarados)).toEqual(5)
   })
@@ -116,12 +116,12 @@ describe('Pikachu Test Suite', () => {
       const enemies = createEnemies(Pokemons, enemiesMap)
 
       const mockEnemies = {
-        1: [4, 7, 8, 9],
+        1: [4, 7, 8, 9, 10],
         2: [4, 5, 6, 7, 8, 9],
         3: [4, 5, 6, 7, 8, 9],
         4: [1, 2, 3],
-        5: [2, 3],
-        6: [2, 3],
+        5: [2, 3, 10],
+        6: [2, 3, 10],
         7: [1, 2, 3],
         8: [1, 2, 3],
         9: [1, 2, 3],
