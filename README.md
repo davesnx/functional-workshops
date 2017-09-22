@@ -17,4 +17,8 @@ The idea of this workshop is to learn the basics of Functional programming using
   I want to create a second level of this kata.
   Will consist on make the pokemons fight agains each other and try who lives or who dies (similar to game of life).
 
-References: [book](http://drboolean.gitbooks.io/mostly-adequate-guide/), [blog](http://randycoulman.com/blog/categories/thinking-in-ramda/)
+References:
+- A [Book](http://drboolean.gitbooks.io/mostly-adequate-guide/) that explains everything.
+- The best explanation out there... [Blog](http://randycoulman.com/blog/categories/thinking-in-ramda/)
+
+Credis on [marcoemrich/pointfree_pokemon_kata](https://github.com/marcoemrich/pointfree_pokemon_kata)
