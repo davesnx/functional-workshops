@@ -1,3 +1,5 @@
+const R = require('ramda')
+
 /*
 
 type alias Pokemon = {
@@ -9,7 +11,26 @@ type alias Pokemon = {
 
 type PokemonTypes = Flying | Poison | Water | Ice | Electric | Normal
 
+type alias Enemy = {
+  id: Number,
+  enemies: Array Number
+}
+
 */
+
+// Number -> Number
+const square = x => Math.pow(x, 2)
+
+// [x, y] -> Number
+const diffPoints = R.apply(R.subtract)
+
+// [x, y] -> [x, y] -> [Number, Number]
+const squaredSubtract = R.compose(R.map(square), R.map(diffPoints))
+
+// [x, y] -> [x, y] -> Number
+const calculateDistance = R.curry(
+  R.compose(Math.sqrt, R.sum, squaredSubtract, R.zip)
+)
 
 const findPikachuPosition = () => {}
 const closestPokemonName = () => {}

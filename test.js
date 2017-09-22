@@ -2,7 +2,7 @@ const {
   findPikachuPosition,
   closestPokemonName,
   distanceBetweenPokemons,
-  validateEnemiesMap,
+  validateEnemiesList,
   createEnemies
 } = require('./index')
 
@@ -99,35 +99,45 @@ describe('Pikachu Test Suite', () => {
   })
 
   describe('Pokemon enemies', () => {
-    const enemiesMap = {
-      Normal: ['Flying', 'Poison'],
-      Water: ['Poison', 'Ice'],
-      Flying: ['Normal', 'Ice'],
-      Poison: ['Normal', 'Water'],
-      Ice: ['Flying', 'Water'],
-      Electric: []
-    }
+    const enemyRelationList = [
+      { type: 'Normal', enemy: 'Flying' },
+      { type: 'Normal', enemy: 'Poison' },
+      { type: 'Water', enemy: 'Poison' },
+      { type: 'Water', enemy: 'Ice' },
+      { type: 'Flying', enemy: 'Normal' },
+      { type: 'Flying', enemy: 'Ice' },
+      { type: 'Poison', enemy: 'Normal' },
+      { type: 'Poison', enemy: 'Water' },
+      { type: 'Ice', enemy: 'Flying' },
+      { type: 'Ice', enemy: 'Water' }
+    ]
 
-    it('validates that enemiesMap make sense', () => {
-      expect(validateEnemiesMap(enemiesMap)).toBeTruthy()
+    const wrongEnemyRelationList = [
+      { type: 'Normal', enemy: 'Flying' },
+      { type: 'Ice', enemy: 'Water' }
+    ]
+
+    it('validates that each enemy has his own type and vicebersa', () => {
+      expect(validateEnemiesList(enemyRelationList)).toBeTruthy()
+      expect(validateEnemiesList(wrongEnemyRelationList)).toBeFalsy()
     })
 
     it('should generate the enemies of each Pokemon', () => {
-      const enemies = createEnemies(Pokemons, enemiesMap)
+      const enemies = createEnemies(Pokemons, enemyRelationList)
 
-      const mockEnemies = {
-        1: [4, 7, 8, 9, 10],
-        2: [4, 5, 6, 7, 8, 9],
-        3: [4, 5, 6, 7, 8, 9],
-        4: [1, 2, 3],
-        5: [2, 3, 10],
-        6: [2, 3, 10],
-        7: [1, 2, 3],
-        8: [1, 2, 3],
-        9: [1, 2, 3],
-        10: [1, 5, 6],
-        11: []
-      }
+      const mockEnemies = [
+        { id: 1, enemies: [4, 7, 8, 9, 10] },
+        { id: 2, enemies: [4, 5, 6, 7, 8, 9] },
+        { id: 3, enemies: [4, 5, 6, 7, 8, 9] },
+        { id: 4, enemies: [1, 2, 3] },
+        { id: 5, enemies: [2, 3, 10] },
+        { id: 6, enemies: [2, 3, 10] },
+        { id: 7, enemies: [1, 2, 3] },
+        { id: 8, enemies: [1, 2, 3] },
+        { id: 9, enemies: [1, 2, 3] },
+        { id: 10, enemies: [1, 5, 6] },
+        { id: 11, enemies: [] }
+      ]
 
       expect(enemies).toEqual(mockEnemies)
     })
