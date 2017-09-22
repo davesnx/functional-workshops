@@ -105,12 +105,15 @@ const getEnemies = R.curry((pokemonList, enemiesMap, pokemon) => {
 })
 
 // Array Pokemon -> [x, y]
+// check each pokemon on the list and ask if his name is pikachu
 const findPikachuPosition = R.pipe(findPikachu, getPosition)
 
 // Array Pokemon -> [x, y] -> String
+// calculate position of each pokemon and get the one that is closer
 const closestPokemonName = R.pipe(closestPokemon, getName)
 
 // Pokemon -> Pokemon -> Number
+// calculate the distance between his positions
 const distanceBetweenPokemons = R.pipe(
   Array.of,
   R.map(getPosition),
@@ -118,11 +121,15 @@ const distanceBetweenPokemons = R.pipe(
 )
 
 // EnemiesMap -> Boolean
+// is valid when all the enemies have his reverse on the list
 const validateEnemiesList = enemiesMap => {
   return R.all(areEnemies(enemiesMap), enemiesMap)
 }
 
 // Array Pokemon, enemiesMap -> Array Enemy
+// get each pokemon type of the list
+// according to enemiesMap, get his enemies
+// add enemies and pokemon id on a list
 const createEnemies = (pokemonList, enemiesMap) => {
   const createEnemy = R.applySpec({
     id: R.prop('id'),
