@@ -32,13 +32,14 @@ const findPikachuPosition = (pokemons) => {
   )(pokemons)
 }
 
+const takePokemonName = R.prop('name')
 const pokemonDistanceToPoint = ([x, y]) => p => dist(R.prop('position', p), [x, y])
 const defaultPokemon = { position: [Infinity, Infinity] }
 
 const closestPokemonName = (pokemons, [x, y]) => {
   return R.pipe(
     R.reduce(R.minBy(pokemonDistanceToPoint([x, y])), defaultPokemon),
-    R.prop('name')
+    takePokemonName
   )(pokemons)
 }
 
