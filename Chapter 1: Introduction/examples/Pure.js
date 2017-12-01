@@ -2,11 +2,13 @@
 
 const isSancho = user => user.name === 'Sancho'
 
-const pure = users => {
+// List User
+const getSanchoUser = users => {
   return users.filter(isSancho)
 }
 
-const inpure = () => {
+//
+const getSanchoUserInpure = () => {
   const users = db.getUsers()
   return users.filter(isSancho)
 }
